@@ -26,6 +26,9 @@ console.log(kataRoman.digitToRoman('500'));
 console.log(kataRoman.digitToRoman('30'));
 console.log(kataRoman.digitToRoman('2000'));
 console.log(kataRoman.digitToRoman('700'));
+console.log(kataRoman.digitToRoman('40'));
+console.log(kataRoman.digitToRoman('9'));
+console.log(kataRoman.digitToRoman('1'));
 
 // second iteration
 // testArabicToRoman('15', 'XV');

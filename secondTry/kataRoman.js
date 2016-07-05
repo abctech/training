@@ -51,8 +51,10 @@ module.exports = {
         if (intDigit === intKey) {
           return mapping[key];
         } else if (intDigit > intKey) {
-          if(digit.charAt(0) === '4' || digit.charAt(0) === '9') {
-            
+          if (digit.charAt(0) === '4') {
+            return mapping[key] + mapping[keyArray[i - 1]];
+          } else if (digit.charAt(0) === '9') {
+            return mapping[keyArray[i + 1]] + mapping[keyArray[i - 1]];
           } else {
             return mapping[key] + this.digitToRoman(String(intDigit - intKey));
           }
