@@ -52,3 +52,5 @@ testRomanToArabic('I', 1);
 testRomanToArabic('V', 5);
 testRomanToArabic('III', 3);
 testRomanToArabic('IV', 4);
+testRomanToArabic('CXXIII', 123);
+testRomanToArabic('MMCLXXIV', 2174);
