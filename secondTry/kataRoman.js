@@ -10,14 +10,25 @@ const mapping = {
 
 module.exports = {
   // string number
-  removeComma: function removeComma(number) {
+  removeComma: function (number) {
     return number.replace(',', '');
+  },
+
+  // int digit
+  removeZeroes: function (digit) {
+    return parseInt(String(digit).charAt(0));
+  },
+
+  getKeyArray: function () {
+    var keyArray = Object.keys(mapping);
+
+    return keyArray.reverse();
   },
 
   // string number, int position: position from left starting from 1
   // example:
   //  extractDigit('135', 1) = '100'
-  extractDigit: function extractDigit(number, position) {
+  extractDigit: function (number, position) {
     var digit = number.charAt(position - 1);
     var numZeroes = number.length - position;
 
@@ -27,22 +38,31 @@ module.exports = {
   },
 
   // string digit
-  digitToRoman: function digitToRoman(digit) {
+  digitToRoman: function (digit) {
     var intDigit = parseInt(digit);
+    var keyArray = this.getKeyArray();
 
-    for (var key in mapping) {
+    for (var i = 0; i < keyArray.length; i++) {
+      key = keyArray[i];
+
       if (Object.prototype.hasOwnProperty.call(mapping, key)) {
         var intKey = parseInt(key);
 
         if (intDigit === intKey) {
           return mapping[key];
+        } else if (intDigit > intKey) {
+          if(digit.charAt(0) === '4' || digit.charAt(0) === '9') {
+            
+          } else {
+            return mapping[key] + this.digitToRoman(String(intDigit - intKey));
+          }
         }
       }
     }
   },
 
   arabicToRoman: function (arabic) {
-    var arabicNoComma = removeComma(arabic);
+    var arabicNoComma = this.removeComma(arabic);
 
     // TODO
 

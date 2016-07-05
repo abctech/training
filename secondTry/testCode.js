@@ -24,6 +24,8 @@ function testArabicToRoman(arabic, roman) { // string arabic
 // test digitToRoman()
 console.log(kataRoman.digitToRoman('500'));
 console.log(kataRoman.digitToRoman('30'));
+console.log(kataRoman.digitToRoman('2000'));
+console.log(kataRoman.digitToRoman('700'));
 
 // second iteration
 // testArabicToRoman('15', 'XV');
