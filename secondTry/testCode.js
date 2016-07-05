@@ -13,6 +13,19 @@ function testArabicToRoman(arabic, roman) { // string arabic
   console.log(`${arabic} = ${converted} ${result}`);
 }
 
+function testRomanToArabic(roman, arabic) { // int arabic
+  var converted = kataRoman.romanToArabic(roman);
+  var result;
+
+  if (converted === arabic) {
+    result = 'Correct';
+  } else {
+    result = 'Incorrect';
+  }
+
+  console.log(`${roman} = ${converted} ${result}`);
+}
+
 // first iteration
 // testArabicToRoman('1', 'I');
 // testArabicToRoman('5', 'V');
@@ -31,6 +44,11 @@ function testArabicToRoman(arabic, roman) { // string arabic
 // console.log(kataRoman.digitToRoman('1'));
 
 // second iteration
-testArabicToRoman('15', 'XV');
-testArabicToRoman('151', 'CLI');
-testArabicToRoman('2357', 'MMCCCLVII');
+// testArabicToRoman('15', 'XV');
+// testArabicToRoman('151', 'CLI');
+// testArabicToRoman('2357', 'MMCCCLVII');
+
+testRomanToArabic('I', 1);
+testRomanToArabic('V', 5);
+testRomanToArabic('III', 3);
+testRomanToArabic('IV', 4);
