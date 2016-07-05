@@ -1,5 +1,3 @@
-const has = require('has');
-
 const mapping = {
   1: 'I',
   5: 'V',
@@ -30,11 +28,23 @@ module.exports = {
 
   // string digit
   digitToRoman: function digitToRoman(digit) {
+    var intDigit = parseInt(digit);
 
+    for (var key in mapping) {
+      if (Object.prototype.hasOwnProperty.call(mapping, key)) {
+        var intKey = parseInt(key);
+
+        if (intDigit === intKey) {
+          return mapping[key];
+        }
+      }
+    }
   },
 
   arabicToRoman: function (arabic) {
     var arabicNoComma = removeComma(arabic);
+
+    // TODO
 
     // return mapping[removeComma(arabic)];
   },
