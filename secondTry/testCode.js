@@ -44,9 +44,9 @@ function testRomanToArabic(roman, arabic) { // int arabic
 // console.log(kataRoman.digitToRoman('1'));
 
 // second iteration
-// testArabicToRoman('15', 'XV');
-// testArabicToRoman('151', 'CLI');
-// testArabicToRoman('2357', 'MMCCCLVII');
+testArabicToRoman('15', 'XV');
+testArabicToRoman('151', 'CLI');
+testArabicToRoman('2357', 'MMCCCLVII');
 
 testRomanToArabic('I', 1);
 testRomanToArabic('V', 5);

@@ -40,7 +40,7 @@ module.exports = {
     var keyArray = this.getKeyArray();
 
     for (var i = 0; i < keyArray.length; i++) {
-      key = keyArray[i];
+       var key = keyArray[i];
 
       if (Object.prototype.hasOwnProperty.call(mapping, key)) {
         var intKey = parseInt(key, 10);
@@ -48,12 +48,13 @@ module.exports = {
         if (intDigit === intKey) {
           return mapping[key];
         } else if (intDigit > intKey) {
-          if (digit.charAt(0) === '4') {
-            return mapping[key] + mapping[keyArray[i - 1]];
-          } else if (digit.charAt(0) === '9') {
-            return mapping[keyArray[i + 1]] + mapping[keyArray[i - 1]];
-          } else {
-            return mapping[key] + this.digitToRoman(String(intDigit - intKey));
+          switch (digit.charAt(0)) {
+            case '4':
+              return mapping[key] + mapping[keyArray[i - 1]];
+            case '9':
+              return mapping[keyArray[i + 1]] + mapping[keyArray[i - 1]];
+            default:
+              return mapping[key] + this.digitToRoman(String(intDigit - intKey));
           }
         }
       }
