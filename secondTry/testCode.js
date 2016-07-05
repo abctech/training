@@ -14,9 +14,13 @@ function testArabicToRoman(arabic, roman) { // string arabic
 }
 
 // first iteration
-testArabicToRoman('1', 'I');
-testArabicToRoman('5', 'V');
+// testArabicToRoman('1', 'I');
+// testArabicToRoman('5', 'V');
 
 // second iteration
-testArabicToRoman('15', 'XV');
-testArabicToRoman('151', 'CLI');
+// testArabicToRoman('15', 'XV');
+// testArabicToRoman('151', 'CLI');
+
+// test extractDigit()
+console.log(kataRoman.extractDigit('130', 1));
+console.log(kataRoman.extractDigit('103450', 3));
