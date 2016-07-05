@@ -17,7 +17,7 @@ module.exports = {
   },
 
   getKeyArray: function () {
-    var keyArray = Object.keys(mapping);
+    let keyArray = Object.keys(mapping);
 
     return keyArray.reverse();
   },
@@ -26,8 +26,8 @@ module.exports = {
   // example:
   //  extractDigit('135', 1) = '100'
   extractDigit: function (number, position) {
-    var digit = number.charAt(position - 1);
-    var numZeroes = number.length - position;
+    let digit = number.charAt(position - 1);
+    let numZeroes = number.length - position;
 
     digit += String(Math.pow(10, numZeroes)).substring(1);
 
@@ -36,14 +36,14 @@ module.exports = {
 
   // string digit
   digitToRoman: function (digit) {
-    var intDigit = parseInt(digit, 10);
-    var keyArray = this.getKeyArray();
+    let intDigit = parseInt(digit, 10);
+    let keyArray = this.getKeyArray();
 
-    for (var i = 0; i < keyArray.length; i++) {
-       var key = keyArray[i];
+    for (let i = 0; i < keyArray.length; i++) {
+       let key = keyArray[i];
 
       if (Object.prototype.hasOwnProperty.call(mapping, key)) {
-        var intKey = parseInt(key, 10);
+        let intKey = parseInt(key, 10);
 
         if (intDigit === intKey) {
           return mapping[key];
@@ -62,9 +62,9 @@ module.exports = {
   },
 
   invertMapping: function() {
-    var invertedMapping = {};
+    let invertedMapping = {};
 
-    for (var key in mapping) {
+    for (let key in mapping) {
       invertedMapping[mapping[key]] = key;
     }
 
@@ -72,8 +72,8 @@ module.exports = {
   },
 
   arabicToRoman: function (arabic) {
-    var arabicNoComma = this.removeComma(arabic);
-    var converted = '';
+    let arabicNoComma = this.removeComma(arabic);
+    let converted = '';
 
     arabicNoComma.split('').forEach((digit, index) => {
       converted += this.digitToRoman(this.extractDigit(arabicNoComma, index + 1));
@@ -83,18 +83,18 @@ module.exports = {
   },
 
   romanToArabic: function (roman) {
-    var invertedMapping = this.invertMapping();
-    var arabic = 0;
+    let invertedMapping = this.invertMapping();
+    let arabic = 0;
 
     if (roman.length === 1) {
       return parseInt(invertedMapping[roman], 10);
     }
 
-    for (var i = 1; i < roman.length; i++) {
-      var prevC = roman.charAt(i - 1);
-      var currentC = roman.charAt(i);
-      var prevValue = parseInt(invertedMapping[prevC], 10);
-      var currentValue = parseInt(invertedMapping[currentC], 10);
+    for (let i = 1; i < roman.length; i++) {
+      let prevC = roman.charAt(i - 1);
+      let currentC = roman.charAt(i);
+      let prevValue = parseInt(invertedMapping[prevC], 10);
+      let currentValue = parseInt(invertedMapping[currentC], 10);
 
       if (prevValue >= currentValue) {
         arabic += prevValue;

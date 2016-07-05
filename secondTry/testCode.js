@@ -1,8 +1,8 @@
 const kataRoman = require('./kataRoman');
 
 function testArabicToRoman(arabic, roman) { // string arabic
-  var converted = kataRoman.arabicToRoman(arabic);
-  var result;
+  let converted = kataRoman.arabicToRoman(arabic);
+  let result;
 
   if (converted === roman) {
     result = 'Correct';
@@ -14,8 +14,8 @@ function testArabicToRoman(arabic, roman) { // string arabic
 }
 
 function testRomanToArabic(roman, arabic) { // int arabic
-  var converted = kataRoman.romanToArabic(roman);
-  var result;
+  let converted = kataRoman.romanToArabic(roman);
+  let result;
 
   if (converted === arabic) {
     result = 'Correct';
