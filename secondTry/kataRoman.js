@@ -65,10 +65,13 @@ module.exports = {
 
   arabicToRoman: function (arabic) {
     var arabicNoComma = this.removeComma(arabic);
+    var converted = '';
 
-    // TODO
+    arabicNoComma.split('').forEach((digit, index) => {
+      converted += this.digitToRoman(this.extractDigit(arabicNoComma, index + 1));
+    });
 
-    // return mapping[removeComma(arabic)];
+    return converted;
   },
 
   romanToArabic: function (roman) {
