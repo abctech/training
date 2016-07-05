@@ -1,4 +1,4 @@
-var kataRoman = require('./kataRoman');
+const kataRoman = require('./kataRoman');
 
 function testArabicToRoman(arabic, roman) { // string arabic
   var converted = kataRoman.arabicToRoman(arabic);
@@ -15,4 +15,8 @@ function testArabicToRoman(arabic, roman) { // string arabic
 
 // first iteration
 testArabicToRoman('1', 'I');
-testArabicToRoman('5', '5');
+testArabicToRoman('5', 'V');
+
+// second iteration
+testArabicToRoman('15', 'XV');
+testArabicToRoman('151', 'CLI');
