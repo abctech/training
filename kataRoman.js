@@ -93,6 +93,8 @@ module.exports = {
             return parseInt(invertedMapping[roman], 10);
         }
 
+        let checkPrev = true;
+
         for (let i = 1; i < roman.length; i++) {
             let prevC = roman.charAt(i - 1);
             let currentC = roman.charAt(i);
@@ -100,13 +102,23 @@ module.exports = {
             let currentValue = parseInt(invertedMapping[currentC], 10);
 
             if (prevValue >= currentValue) {
-                arabic += prevValue;
+                if (checkPrev) {
+                    arabic += prevValue;
+                    checkPrev = false;
+                }
+
+                if (prevValue > currentValue && String(prevValue).length !== String(currentValue).length) {
+                    checkPrev = true;
+                    continue;
+                }
+
+                arabic += currentValue;
             } else {
                 arabic += currentValue - prevValue;
-                i += 2;
+                i++;
 
-                if (i === roman.length) {
-                    arabic += parseInt(invertedMapping[roman.charAt(roman.length - 1)], 10);
+                if (i + 1 >= roman.length) {
+                    arabic += this.romanToArabic(roman.substring(i));
                 }
             }
         }

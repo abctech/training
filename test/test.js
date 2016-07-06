@@ -49,9 +49,11 @@ describe('#arabicDigitToRoman()', () => {
 describe('#romanToArabic()', () => {
     it('should convert Roman numbers to Arabic numbers', () => {
         assert.equal(kataRoman.romanToArabic('I'), 1);
+        assert.equal(kataRoman.romanToArabic('II'), 2);
         assert.equal(kataRoman.romanToArabic('MCCLIV'), 1254);
         assert.equal(kataRoman.romanToArabic('MMCDL'), 2450);
         assert.equal(kataRoman.romanToArabic('DCCXLV'), 745);
+        assert.equal(kataRoman.romanToArabic('DCCXLII'), 742);
     });
 
     it('should return an integer', () => {
