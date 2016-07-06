@@ -80,8 +80,10 @@ module.exports = {
     arabicToRoman: function (arabic) {
         arabic = this.removeComma(arabic);
 
-        return arabic.split('').map(this.extractDigit)
-            .map(this.arabicDigitToRoman, this).join('');
+        return arabic.split('')
+            .map(this.extractDigit)
+            .map(this.arabicDigitToRoman, this)
+            .join('');
     },
 
     romanToArabic: function (roman) {
@@ -106,7 +108,7 @@ module.exports = {
                     checkPrev = false;
                 }
 
-                if (prevValue > currentValue && String(prevValue).length !== String(currentValue).length) {
+                if (String(prevValue).length !== String(currentValue).length) {
                     checkPrev = true;
                     continue;
                 }
