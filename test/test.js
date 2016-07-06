@@ -3,23 +3,45 @@
 const assert = require('chai').assert;
 const kataRoman = require('../kataRoman');
 
-describe('Convert Arabic to Roman', function() {
-    describe('Convert numbers that are contained in the mapping', function() {
-        it('No commas', function() {
-            assert.equal(kataRoman.arabicToRoman('1'), 'I');
-            assert.equal(kataRoman.arabicToRoman('50'), 'L');
-        });
-
-        it('With commas', function() {
-            assert.equal(kataRoman.arabicToRoman('1,000'), 'M');
-        });
+describe('#arabicToRoman()', () => {
+    it('should convert a number for each alphabet', () => {
+        assert.equal(kataRoman.arabicToRoman('1'), 'I');
+        assert.equal(kataRoman.arabicToRoman('50'), 'L');
     });
 
-    it('Convert numbers that contain only 0, 1, and 5 (with commas)', function() {
+    it('should convert number strings with commas', () => {
+        assert.equal(kataRoman.arabicToRoman('1,000'), 'M');
+        assert.equal(kataRoman.arabicToRoman('1,234'), 'MCCXXXIV');
+    });
+
+    it('should convert numbers that contain only 0, 1, and 5', () => {
         assert.equal(kataRoman.arabicToRoman('15'), 'XV');
+        assert.equal(kataRoman.arabicToRoman('1,501'), 'MDI');
+        assert.equal(kataRoman.arabicToRoman('1,005'), 'MV');
     });
 
-    it('Convert any numbers (with commas)', function() {
+    it('should convert numbers that contain only 4 and 9', () => {
         assert.equal(kataRoman.arabicToRoman('4'), 'IV');
+        assert.equal(kataRoman.arabicToRoman('499'), 'CDXCIX');
+        assert.equal(kataRoman.arabicToRoman('444'), 'CDXLIV');
     });
+
+    it('should convert any numbers', () => {
+        assert.equal(kataRoman.arabicToRoman('2,450'), 'MMCDL');
+        assert.equal(kataRoman.arabicToRoman('745'), 'DCCXLV');
+    });
+});
+
+describe('#extractDigit()', () => {
+    it('should return the digit padded with zeroes', () => {
+        assert.equal(kataRoman.extractDigit('1340', 1), '1000');
+        assert.equal(kataRoman.extractDigit('345', 3), '5');
+        assert.equal(kataRoman.extractDigit('2340', 4), '0');
+    });
+});
+
+describe('#arabicDigitToRoman()', () => {
+    it('should convert the input to the Roman format', () => {
+        assert.equal(kataRoman.arabicDigitToRoman('3000'), 'MMM');
+    })
 });
