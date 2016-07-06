@@ -43,5 +43,18 @@ describe('#extractDigit()', () => {
 describe('#arabicDigitToRoman()', () => {
     it('should convert the input to the Roman format', () => {
         assert.equal(kataRoman.arabicDigitToRoman('3000'), 'MMM');
-    })
+    });
+});
+
+describe('#romanToArabic()', () => {
+    it('should convert Roman numbers to Arabic numbers', () => {
+        assert.equal(kataRoman.romanToArabic('I'), 1);
+        assert.equal(kataRoman.romanToArabic('MCCLIV'), 1254);
+        assert.equal(kataRoman.romanToArabic('MMCDL'), 2450);
+        assert.equal(kataRoman.romanToArabic('DCCXLV'), 745);
+    });
+
+    it('should return an integer', () => {
+        assert.isNumber(kataRoman.romanToArabic('I'));
+    });
 });
