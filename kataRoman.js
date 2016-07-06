@@ -26,19 +26,19 @@ module.exports = {
         return digit;
     },
 
-    getKeyArray: function () {
-        let keyArray = Object.keys(mapping);
+    getKeys: function () {
+        let keys = Object.keys(mapping);
 
-        return keyArray.reverse();
+        return keys.reverse();
     },
 
     // string digit
     arabicDigitToRoman: function (digit) {
         let intDigit = parseInt(digit, 10);
-        let keyArray = this.getKeyArray();
+        let keys = this.getKeys();
 
-        for (let i = 0; i < keyArray.length; i++) {
-            let key = keyArray[i];
+        for (let i = 0; i < keys.length; i++) {
+            let key = keys[i];
 
             if (Object.prototype.hasOwnProperty.call(mapping, key)) {
                 let intKey = parseInt(key, 10);
@@ -48,9 +48,9 @@ module.exports = {
                 } else if (intDigit > intKey) {
                     switch (digit.charAt(0)) {
                         case '4':
-                            return mapping[key] + mapping[keyArray[i - 1]];
+                            return mapping[key] + mapping[keys[i - 1]];
                         case '9':
-                            return mapping[keyArray[i + 1]] + mapping[keyArray[i - 1]];
+                            return mapping[keys[i + 1]] + mapping[keys[i - 1]];
                         default:
                             return mapping[key] + this.arabicDigitToRoman(String(intDigit - intKey));
                     }
