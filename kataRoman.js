@@ -16,7 +16,7 @@ module.exports = {
         return number.replace(',', '');
     },
 
-    // string number
+    // string number (no comma)
     extractDigit: function (number, position) {
         let digit = number.charAt(position - 1);
         let numZeroes = number.length - position;
@@ -26,12 +26,34 @@ module.exports = {
         return digit;
     },
 
+    getKeyArray: function () {
+        let keyArray = Object.keys(mapping);
+
+        return keyArray.reverse();
+    },
+
     // string digit
     arabicDigitToRoman: function (digit) {
-        for (let key in mapping) {
-            if (mapping.hasOwnProperty(key)) {
-                if (digit === key) {
+        let intDigit = parseInt(digit, 10);
+        let keyArray = this.getKeyArray();
+
+        for (let i = 0; i < keyArray.length; i++) {
+            let key = keyArray[i];
+
+            if (Object.prototype.hasOwnProperty.call(mapping, key)) {
+                let intKey = parseInt(key, 10);
+
+                if (intDigit === intKey) {
                     return mapping[key];
+                } else if (intDigit > intKey) {
+                    switch (digit.charAt(0)) {
+                        case '4':
+                            return mapping[key] + mapping[keyArray[i - 1]];
+                        case '9':
+                            return mapping[keyArray[i + 1]] + mapping[keyArray[i - 1]];
+                        default:
+                            return mapping[key] + this.arabicDigitToRoman(String(intDigit - intKey));
+                    }
                 }
             }
         }
