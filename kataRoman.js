@@ -59,6 +59,18 @@ module.exports = {
         }
     },
 
+    invertMapping: function () {
+        let invertedMapping = {};
+
+        for (let key in mapping) {
+            if (mapping.hasOwnProperty(key)) {
+                invertedMapping[mapping[key]] = key;
+            }
+        }
+
+        return invertedMapping;
+    },
+
     // string arabic (may include a comma)
     arabicToRoman: function (arabic) {
         arabic = this.removeComma(arabic);
@@ -71,5 +83,34 @@ module.exports = {
         });
 
         return converted;
+    },
+
+    romanToArabic: function (roman) {
+        let invertedMapping = this.invertMapping();
+        let arabic = 0;
+
+        if (roman.length === 1) {
+            return parseInt(invertedMapping[roman], 10);
+        }
+
+        for (let i = 1; i < roman.length; i++) {
+            let prevC = roman.charAt(i - 1);
+            let currentC = roman.charAt(i);
+            let prevValue = parseInt(invertedMapping[prevC], 10);
+            let currentValue = parseInt(invertedMapping[currentC], 10);
+
+            if (prevValue >= currentValue) {
+                arabic += prevValue;
+            } else {
+                arabic += currentValue - prevValue;
+                i += 2;
+
+                if (i === roman.length) {
+                    arabic += parseInt(invertedMapping[roman.charAt(roman.length - 1)], 10);
+                }
+            }
+        }
+
+        return arabic;
     },
 };
