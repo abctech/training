@@ -16,12 +16,13 @@ module.exports = {
         return number.replace(',', '');
     },
 
-    // string number (no comma)
-    extractDigit: function (number, position) {
-        let digit = number.charAt(position - 1);
-        let numZeroes = number.length - position;
+    // digit: 1-char string
+    extractDigit: function (digit, index, array) {
+        let numZeroes = array.length - index - 1;
 
-        digit += String(Math.pow(10, numZeroes)).substring(1);
+        if (digit !== '0') {
+            digit += String(Math.pow(10, numZeroes)).substring(1);
+        }
 
         return digit;
     },
@@ -32,8 +33,12 @@ module.exports = {
         return keys.reverse();
     },
 
-    // string digit
+    // digit: string
     arabicDigitToRoman: function (digit) {
+        if (digit === '0') {
+            return '';
+        }
+
         let intDigit = parseInt(digit, 10);
         let keys = this.getKeys();
 
@@ -71,18 +76,12 @@ module.exports = {
         return invertedMapping;
     },
 
-    // string arabic (may include a comma)
+    // arabic: string (may include a comma)
     arabicToRoman: function (arabic) {
         arabic = this.removeComma(arabic);
-        let converted = '';
 
-        arabic.split('').forEach((digit, index) => {
-            if (digit !== '0') {
-                converted += this.arabicDigitToRoman(this.extractDigit(arabic, index + 1));
-            }
-        });
-
-        return converted;
+        return arabic.split('').map(this.extractDigit)
+            .map(this.arabicDigitToRoman, this).join('');
     },
 
     romanToArabic: function (roman) {

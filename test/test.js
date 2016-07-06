@@ -34,9 +34,9 @@ describe('#arabicToRoman()', () => {
 
 describe('#extractDigit()', () => {
     it('should return the digit padded with zeroes', () => {
-        assert.equal(kataRoman.extractDigit('1340', 1), '1000');
-        assert.equal(kataRoman.extractDigit('345', 3), '5');
-        assert.equal(kataRoman.extractDigit('2340', 4), '0');
+        assert.equal(kataRoman.extractDigit('1', 0, ['1', '3', '4', '0']), '1000');
+        assert.equal(kataRoman.extractDigit('5', 2, ['3', '4', '5']), '5');
+        assert.equal(kataRoman.extractDigit('0', 3, ['2', '3', '4', '0']), '0');
     });
 });
 
@@ -54,6 +54,8 @@ describe('#romanToArabic()', () => {
         assert.equal(kataRoman.romanToArabic('MMCDL'), 2450);
         assert.equal(kataRoman.romanToArabic('DCCXLV'), 745);
         assert.equal(kataRoman.romanToArabic('DCCXLII'), 742);
+        assert.equal(kataRoman.romanToArabic('DCCXLIII'), 743);
+        assert.equal(kataRoman.romanToArabic('DXLVIII'), 548);
     });
 
     it('should return an integer', () => {
