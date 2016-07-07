@@ -112,7 +112,8 @@ module.exports = {
                 arabic += currentValue - prevValue;
                 i++;
 
-                if (i + 1 >= roman.length) {
+                if (i + 1 === roman.length) {
+                    console.log(roman, (i + 1) - roman.length, roman.substring(i));
                     arabic += this.romanToArabic(roman.substring(i));
                 }
             }
