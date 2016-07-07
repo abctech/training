@@ -27,12 +27,6 @@ module.exports = {
         return digit;
     },
 
-    getKeys: function () {
-        let keys = Object.keys(mapping);
-
-        return keys.reverse();
-    },
-
     // digit: string
     arabicDigitToRoman: function (digit) {
         if (digit === '0') {
@@ -40,7 +34,7 @@ module.exports = {
         }
 
         let intDigit = parseInt(digit, 10);
-        let keys = this.getKeys();
+        let keys = Object.keys(mapping).reverse();
 
         for (let i = 0; i < keys.length; i++) {
             let key = keys[i];
